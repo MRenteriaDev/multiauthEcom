@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Category\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 
@@ -23,7 +24,7 @@ Route::group(['prefix'=>'admin','middleware'=>['admin:admin']],function(){
 	Route::post('/login', [AdminController::class, 'store'])->name('admin.login');
 });
 
-
+Route::get('/all', [CategoryController::class, 'index'])->name('category.index');
 
 Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
     return view('admin.index');
