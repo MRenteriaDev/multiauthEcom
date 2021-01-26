@@ -15,8 +15,8 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('frontend.index');
+})->name('home');
 
 Route::group(['prefix'=>'admin','middleware'=>['admin:admin']],function(){
 	Route::get('/login', [AdminController::class, 'loginForm']);
