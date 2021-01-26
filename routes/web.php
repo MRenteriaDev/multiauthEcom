@@ -12,7 +12,7 @@ use App\Http\Controllers\AdminController;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/ 
+*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,7 +26,7 @@ Route::group(['prefix'=>'admin','middleware'=>['admin:admin']],function(){
 
 
 Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
-    return view('dashboard');
+    return view('admin.index');
 })->name('dashboard');
 
 
