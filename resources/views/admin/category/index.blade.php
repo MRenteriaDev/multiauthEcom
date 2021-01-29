@@ -1,10 +1,34 @@
 @extends('admin.admin_master')
 
 @section('admin_content')
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Inline Charts</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{ route('category.create') }}" class="btn btn-primary">Add
+                                Category</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
     {{-- Start Row --}}
     <div class="container-fluid pt-5">
         <div class="row">
             <div class="col-md-8">
+                @if (Session::has('success'))
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>{{ Session::get('success') }}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">All Categories</h3>
@@ -29,8 +53,38 @@
                                             {{ Carbon\Carbon::parse($category->created_at)->diffForHumans() }}
                                         </td>
                                         <td>
-                                            <a href="#" class="btn btn-sm btn-primary">Editar</a>
-                                            <a href="#" class="btn btn-sm btn-danger">Eliminar</a>
+                                            <a href="{{ url('/category/edit/' . $category->id) }}"
+                                                class="btn btn-sm btn-primary">Editar</a>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
+                                                data-target="#exampleModal">
+                                                Eliminar
+                                            </button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Eliminar
+                                                                Categoria</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Al eliminar la categoria no se podrá restablecer
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-sm btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                            <a href="{{ url('/category/delete/' . $category->id) }}"
+                                                                class="btn btn-sm btn-danger">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach

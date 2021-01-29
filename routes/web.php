@@ -19,12 +19,10 @@ Route::get('/', function () {
     return view('frontend.index');
 })->name('home');
 
-Route::group(['prefix'=>'admin','middleware'=>['admin:admin']],function(){
-	Route::get('/login', [AdminController::class, 'loginForm']);
-	Route::post('/login', [AdminController::class, 'store'])->name('admin.login');
+Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function () {
+    Route::get('/login', [AdminController::class, 'loginForm']);
+    Route::post('/login', [AdminController::class, 'store'])->name('admin.login');
 });
-
-Route::get('/all', [CategoryController::class, 'index'])->name('category.index');
 
 Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
     return view('admin.index');
@@ -34,3 +32,11 @@ Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', f
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+// CATEGORIES ROUTES
+Route::get('category/all', [CategoryController::class, 'index'])->name('category.index');
+Route::get('category/create', [CategoryController::class, 'create'])->name('category.create');
+Route::post('category/store', [CategoryController::class, 'store'])->name('category.store');
+Route::get('category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+Route::post('category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
+Route::get('category/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
