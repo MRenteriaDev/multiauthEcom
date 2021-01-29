@@ -10,8 +10,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('category.create') }}" class="btn btn-primary">Add
-                                Category</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('brand.create') }}" class="btn btn-primary">Add
+                                Brand</a></li>
                     </ol>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                 @endif
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">All Categories</h3>
+                        <h3 class="card-title">All Brand</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -39,21 +39,26 @@
                             <thead>
                                 <tr>
                                     <th style="width: 10px">#</th>
-                                    <th>Category Name</th>
+                                    <th>Brand Name</th>
                                     <th>Created At</th>
+                                    <th>Brand Logo</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($categories as $category)
+                                @foreach ($brands as $brand)
                                     <tr>
-                                        <td>{{ $category->id }}.</td>
-                                        <td>{{ $category->category_name }}</td>
+                                        <td>{{ $brand->id }}.</td>
+                                        <td>{{ $brand->brand_name }}</td>
                                         <td>
-                                            {{ Carbon\Carbon::parse($category->created_at)->diffForHumans() }}
+                                            {{ Carbon\Carbon::parse($brand->created_at)->diffForHumans() }}
                                         </td>
                                         <td>
-                                            <a href="{{ url('/category/edit/' . $category->id) }}"
+                                            <img src="{{ asset($brand->brand_logo) }}" style="height: 40px; width:70px"
+                                                alt="Image Brand">
+                                        </td>
+                                        <td>
+                                            <a href="{{ url('/brand/edit/' . $brand->id) }}"
                                                 class="btn btn-sm btn-primary">Editar</a>
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
@@ -79,7 +84,7 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-sm btn-secondary"
                                                                 data-dismiss="modal">Close</button>
-                                                            <a href="{{ url('/category/delete/' . $category->id) }}"
+                                                            <a href="{{ url('/brand/delete/' . $brand->id) }}"
                                                                 class="btn btn-sm btn-danger">Delete</a>
                                                         </div>
                                                     </div>
