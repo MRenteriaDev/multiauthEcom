@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Brand\BrandController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Category\CouponController;
+use App\Http\Controllers\Admin\Category\NewslatterController;
 use App\Http\Controllers\Admin\Category\SubCategoryCcontroller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
@@ -68,3 +69,8 @@ Route::get('coupon/edit/{id}', [CouponController::class, 'edit'])->name('coupon.
 Route::post('coupon/update/{id}', [CouponController::class, 'update'])->name('coupon.update');
 Route::get('coupon/delete/{id}', [CouponController::class, 'delete'])->name('coupon.delete');
 
+// Newslatters Routes
+
+Route::get('newslatter/all', [NewslatterController::class, 'index'])->name('newslatter.index');
+Route::post ('newslatter/store', [NewslatterController::class, 'store'])->name('newslatter.store');
+Route::get('newslatter/delete/{id}', [NewslatterController::class, 'delete'])->name('newslatter.delete');

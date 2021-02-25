@@ -16,7 +16,7 @@
                      alt="User Image">
              </div>
              <div class="info">
-                 <a href="#" class="d-block">{{Auth::user()->name}}</a>
+                 <a href="#" class="d-block">Moisés Admin</a>
              </div>
          </div>
 
@@ -81,6 +81,23 @@
                              <a href="{{ route('brand.index') }}" class="nav-link">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>All Brand</p>
+                             </a>
+                         </li>
+                     </ul>
+                 </li>
+                 <li class="nav-item has-treeview">
+                     <a href="#" class="nav-link">
+                         <i class="nav-icon fas fa-tachometer-alt"></i>
+                         <p>
+                             Others
+                             <i class="right fas fa-angle-left"></i>
+                         </p>
+                     </a>
+                     <ul class="nav nav-treeview">
+                         <li class="nav-item">
+                             <a href="{{ route('newslatter.index') }}" class="nav-link">
+                                 <i class="far fa-circle nav-icon"></i>
+                                 <p>Newslatters</p>
                              </a>
                          </li>
                      </ul>
