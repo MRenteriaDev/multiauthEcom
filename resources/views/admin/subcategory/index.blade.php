@@ -6,12 +6,49 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>All Category</h1>
+                    <h1>All SubCategories</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('category.create') }}" class="btn btn-primary">Add
-                                Category</a></li>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            Add SubCategory
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Add SubCategoy</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form method="POST" action="{{ route('subcategory.store') }}" class="modal-body">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label for="category_name">SubCategory Name</label>
+                                            <input type="text" class="form-control" name="subcategory_name"
+                                                placeholder="SubCategory Name..">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="category-id">Category</label>
+                                            <select name="category_id" id="exampleFormControlSelect1" class="form-control">
+                                                @foreach ($category as $row)
+                                                    <option value="{{$row->id}}">{{ $row->category_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </ol>
                 </div>
             </div>
@@ -21,17 +58,17 @@
     <div class="container-fluid pt-5">
         <div class="row">
             <div class="col-md-8">
-                @if (Session::has('success'))
+                {{-- @if (Session::has('success'))
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                         <strong>{{ Session::get('success') }}</strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                @endif
+                @endif --}}
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">All Categories</h3>
+                        <h3 class="card-title">All SubCategories</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -39,29 +76,29 @@
                             <thead>
                                 <tr>
                                     <th style="width: 10px">#</th>
+                                    <th>Sub Category Name</th>
                                     <th>Category Name</th>
-                                    <th>Created At</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($categories as $category)
+                                @foreach ($subcat as $subCategory)
                                     <tr>
-                                        <td>{{ $category->id }}.</td>
-                                        <td>{{ $category->category_name }}</td>
+                                        <td>{{ $subCategory->id }}.</td>
+                                        <td>{{ $subCategory->subcategory_name }}</td>
                                         <td>
-                                            {{ Carbon\Carbon::parse($category->created_at)->diffForHumans() }}
+                                            {{ $subCategory->category_name }}
                                         </td>
                                         <td>
-                                            <a href="{{ url('/category/edit/' . $category->id) }}"
+                                            <a href="{{ url('subcategory/edit/' . $subCategory->id) }}"
                                                 class="btn btn-sm btn-primary">Editar</a>
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
-                                                data-target="#exampleModal">
+                                                data-target="#exampleModalDelete">
                                                 Eliminar
                                             </button>
                                             <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal" tabindex="-1"
+                                            <div class="modal fade" id="exampleModalDelete"
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
@@ -79,7 +116,7 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-sm btn-secondary"
                                                                 data-dismiss="modal">Close</button>
-                                                            <a href="{{ url('/category/delete/' . $category->id) }}"
+                                                            <a href="{{ URL::to('subcategory/delete/' . $subCategory->id) }}"
                                                                 class="btn btn-sm btn-danger">Delete</a>
                                                         </div>
                                                     </div>

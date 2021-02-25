@@ -31,13 +31,22 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form method="POST" action="{{ route('category.store') }}">
+                        <form method="POST" action="{{ url('/subcategory/update/' . $subcat->id) }}">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
+                                    <label for="category_name">SubCategory Name</label>
+                                    <input type="text" value="{{ $subcat->subcategory_name }}" name="subcategory_name"
+                                        class="form-control" id="exampleInputEmail1" placeholder="Enter Category Name">
+                                </div>
+                                <div class="form-group">
                                     <label for="category_name">Category Name</label>
-                                    <input type="text" name="category_name" class="form-control" id="exampleInputEmail1"
+                                    <select type="text" name="category_id" class="form-control" id="exampleInputEmail1"
                                         placeholder="Enter Category Name">
+                                        @foreach ($category as $row)
+                                            <option value="{{ $row->id }}">{{ $row->category_name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <!-- /.card-body -->

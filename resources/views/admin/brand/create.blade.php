@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Inline Charts</h1>
+                    <h1>Alls Brands</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -35,12 +35,12 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="brand_name">Category Name</label>
+                                    <label for="brand_name">Brand Name</label>
                                     <input type="text" name="brand_name" class="form-control" id="exampleInputEmail1"
                                         placeholder="Enter Category Name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="brand_logo">Category Name</label>
+                                    <label for="brand_logo">Brand Image</label>
                                     <input type="file" name="brand_logo" class="form-control" id="exampleInputEmail1"
                                         placeholder="Upload Logo">
                                 </div>

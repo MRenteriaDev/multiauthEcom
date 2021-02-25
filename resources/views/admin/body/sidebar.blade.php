@@ -16,7 +16,7 @@
                      alt="User Image">
              </div>
              <div class="info">
-                 <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+                 <a href="#" class="d-block">{{Auth::user()->name}}</a>
              </div>
          </div>
 
@@ -56,6 +56,10 @@
                              <a href="{{ route('category.index') }}" class="nav-link">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>All Category</p>
+                             </a>
+                             <a href="{{ route('subcategory.index') }}" class="nav-link">
+                                 <i class="far fa-circle nav-icon"></i>
+                                 <p>Sub Category</p>
                              </a>
                          </li>
                      </ul>
