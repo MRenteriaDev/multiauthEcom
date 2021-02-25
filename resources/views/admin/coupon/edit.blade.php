@@ -6,12 +6,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Create Categories</h1>
+                    <h1>Edit Coupons</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('category.index') }}" class="btn btn-primary">All
-                                Category</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('coupon.index') }}" class="btn btn-primary">All
+                                Coupons</a></li>
                     </ol>
                 </div>
             </div>
@@ -31,22 +31,18 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form method="POST" action="{{ url('/subcategory/update/' . $subcat->id) }}">
+                        <form method="POST" action="{{ url('/coupon/update/' . $coupon->id) }}">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="category_name">SubCategory Name</label>
-                                    <input type="text" value="{{ $subcat->subcategory_name }}" name="subcategory_name"
-                                        class="form-control" id="exampleInputEmail1" placeholder="Enter Category Name">
+                                    <label for="coupon">Coupon</label>
+                                    <input type="text" value="{{ $coupon->coupon }}" name="coupon" class="form-control"
+                                        id="exampleInputEmail1" placeholder="Enter Coupon Name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="category_name">Category Name</label>
-                                    <select type="text" name="category_id" class="form-control" id="exampleInputEmail1"
-                                        placeholder="Enter Category Name">
-                                        @foreach ($category as $row)
-                                            <option value="{{ $row->id }}">{{ $row->category_name }}</option>
-                                        @endforeach
-                                    </select>
+                                    <label for="discount">Discount</label>
+                                    <input type="text" class="form-control" name="discount" placeholder="Discount %"
+                                        value="{{ $coupon->discount }}">
                                 </div>
                             </div>
                             <!-- /.card-body -->

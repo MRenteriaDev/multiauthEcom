@@ -6,13 +6,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>All SubCategories</h1>
+                    <h1>All Coupons</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                            Add SubCategory
+                            Add Coupon
                         </button>
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
@@ -20,25 +20,22 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Add SubCategoy</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Add Coupons</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form method="POST" action="{{ route('subcategory.store') }}" class="modal-body">
+                                    <form method="POST" action="{{ route('coupon.store') }}" class="modal-body">
                                         @csrf
                                         <div class="form-group">
-                                            <label for="category_name">SubCategory Name</label>
-                                            <input type="text" class="form-control" name="subcategory_name"
-                                                placeholder="SubCategory Name..">
+                                            <label for="category_name">Coupon Name</label>
+                                            <input type="text" class="form-control" name="coupon"
+                                                placeholder="Coupon Name..">
                                         </div>
                                         <div class="form-group">
-                                            <label for="category-id">Category</label>
-                                            <select name="category_id" id="exampleFormControlSelect1" class="form-control">
-                                                @foreach ($category as $row)
-                                                    <option value="{{$row->id}}">{{ $row->category_name }}</option>
-                                                @endforeach
-                                            </select>
+                                            <label for="category-id">Discount %</label>
+                                            <input type="text" class="form-control" name="discount"
+                                                placeholder="Discount %">
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
@@ -76,21 +73,21 @@
                             <thead>
                                 <tr>
                                     <th style="width: 10px">#</th>
-                                    <th>Sub Category Name</th>
-                                    <th>Category Name</th>
-                                    <th>Actions</th>
+                                    <th>Coupon</th>
+                                    <th>Discount %</th>
+                                    <th>Created At</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($subcat as $subCategory)
+                                @foreach ($coupons as $coupon)
                                     <tr>
-                                        <td>{{ $subCategory->id }}.</td>
-                                        <td>{{ $subCategory->subcategory_name }}</td>
+                                        <td>{{ $coupon->id }}.</td>
+                                        <td>{{ $coupon->coupon }}</td>
                                         <td>
-                                            {{ $subCategory->category_name }}
+                                            {{ $coupon->discount }} %
                                         </td>
                                         <td>
-                                            <a href="{{ url('subcategory/edit/' . $subCategory->id) }}"
+                                            <a href="{{ url('/coupon/edit/' . $coupon->id) }}"
                                                 class="btn btn-sm btn-primary">Editar</a>
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
@@ -111,12 +108,12 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            Al eliminar la categoria no se podrá restablecer
+                                                            Al eliminar el coupon no se podrá restablecer
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-sm btn-secondary"
                                                                 data-dismiss="modal">Close</button>
-                                                            <a href="{{ URL::to('subcategory/delete/' . $subCategory->id) }}"
+                                                            <a href="{{ url('/coupon/delete/' . $coupon->id) }}"
                                                                 class="btn btn-sm btn-danger">Delete</a>
                                                         </div>
                                                     </div>

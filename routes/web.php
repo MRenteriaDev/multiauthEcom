@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Brand\BrandController;
 use App\Http\Controllers\Admin\Category\CategoryController;
+use App\Http\Controllers\Admin\Category\CouponController;
 use App\Http\Controllers\Admin\Category\SubCategoryCcontroller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
@@ -59,3 +60,11 @@ Route::post('subcategory/store', [SubCategoryCcontroller::class, 'store'])->name
 Route::get('subcategory/edit/{id}', [SubCategoryCcontroller::class, 'edit'])->name('subcategory.edit');
 Route::post('subcategory/update/{id}', [SubCategoryCcontroller::class, 'update'])->name('subcategory.update');
 Route::get('subcategory/delete/{id}', [SubCategoryCcontroller::class, 'delete'])->name('subcategory.delete');
+
+// Coupons Routes
+Route::get('coupons/all', [CouponController::class, 'index'])->name('coupon.index');
+Route::post('coupons/store', [CouponController::class, 'store'])->name('coupon.store');
+Route::get('coupon/edit/{id}', [CouponController::class, 'edit'])->name('coupon.edit');
+Route::post('coupon/update/{id}', [CouponController::class, 'update'])->name('coupon.update');
+Route::get('coupon/delete/{id}', [CouponController::class, 'delete'])->name('coupon.delete');
+
